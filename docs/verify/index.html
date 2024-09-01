@@ -63,7 +63,7 @@
             <h1>Verification - GD+</h1>
         </div>
     </header>
-    
+
     <div class="container">
         <div class="verification-content">
             <div class="section">
@@ -75,33 +75,22 @@
                     <li>Click the "Verify" button to complete the process.</li>
                 </ol>
             </div>
-            
-            <div class="section">
-                <h2>Enter Verification Code</h2>
-                <form class="verification-form">
-                    <input type="text" id="verification-code" placeholder="Enter your verification code" required>
-                    <button type="submit">Verify</button>
-                </form>
-            </div>
-            
+
             <div class="section">
                 <h2>Verification Image</h2>
                 <p>To help with verification, you might need to provide additional information. Below is the verification image:</p>
                 <div class="verification-image">
-                    <canvas id="verification-canvas" width="300" height="100"></canvas>
+                    <canvas id="verification-canvas-7" width="300" height="100"></canvas>
                 </div>
+                <input type="text" id="verification-input-7" placeholder="Enter code">
+                <button id="send-verification-7">Submit</button>
             </div>
-            
+
             <!-- Hidden Section -->
             <div class="section hidden" id="verification-info">
                 <h2>About GD+ Bot</h2>
                 <p>GD+’s bot offers additional functionality and features for managing your Geometry Dash experience. Make sure to follow all setup instructions to ensure proper integration.</p>
                 <p>Will be coming soon for GD+ Bot.</p>
-            </div>
-            
-            <!-- Button to Toggle Hidden Section -->
-            <div class="section">
-                <button id="toggle-verification-info">Show More Information</button>
             </div>
         </div>
     </div>
