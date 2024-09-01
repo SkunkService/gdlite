@@ -34,11 +34,12 @@ window.onload = function() {
         // Handle button click event
         var sendButton = document.getElementById('send-verification');
         var inputField = document.getElementById('verification-input');
+        var hiddenSection = document.getElementById('verification-info');
 
-        if (sendButton && inputField) {
+        if (sendButton && inputField && hiddenSection) {
             sendButton.addEventListener('click', function() {
                 if (inputField.value === code) {
-                    alert('Verification code is correct.');
+                    hiddenSection.classList.remove('hidden'); // Show hidden section if code matches
                 } else {
                     alert('Incorrect code. Please try again.');
                 }
