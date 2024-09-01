@@ -1,7 +1,4 @@
 window.onload = function() {
-    var canvas = document.getElementById('verification-canvas');
-    var ctx = canvas.getContext('2d');
-
     // Function to generate a random code
     function generateRandomCode(length) {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -13,35 +10,44 @@ window.onload = function() {
         return result;
     }
 
-    // Generate a random code
-    const code = generateRandomCode(6); // Adjust the length as needed
+    // Function to initialize each verification section
+    function initializeVerificationSection(canvasId, inputId, buttonId) {
+        var canvas = document.getElementById(canvasId);
+        var ctx = canvas.getContext('2d');
 
-    // Set canvas background
-    ctx.fillStyle = '#f0f0f0';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // Generate a random code
+        const code = generateRandomCode(6); // Adjust the length as needed
 
-    // Set text properties
-    ctx.fillStyle = '#333';
-    ctx.font = '24px Arial';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
+        // Set canvas background
+        ctx.fillStyle = '#f0f0f0';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Draw the random code on canvas
-    ctx.fillText(code, canvas.width / 2, canvas.height / 2);
+        // Set text properties
+        ctx.fillStyle = '#333';
+        ctx.font = '24px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
 
-    // Ensure the toggle button only affects the verification context
-    var toggleButton = document.getElementById('toggle-verification-info');
-    var hiddenSection = document.getElementById('verification-info');
-    var inputField = document.getElementById('verification-code');
+        // Draw the random code on canvas
+        ctx.fillText(code, canvas.width / 2, canvas.height / 2);
 
-    if (toggleButton && hiddenSection && inputField) {
-        toggleButton.addEventListener('click', function() {
-            // Check if the entered code matches the generated random code
-            if (inputField.value === code) {
-                hiddenSection.classList.toggle('hidden');
-            } else {
-                alert('The code must match the displayed code to toggle the section.');
-            }
-        });
+        // Handle button click event
+        var sendButton = document.getElementById(buttonId);
+        var inputField = document.getElementById(inputId);
+
+        if (sendButton && inputField) {
+            sendButton.addEventListener('click', function() {
+                if (inputField.value === code) {
+                    alert('Verification code is correct.');
+                } else {
+                    alert('Incorrect code. Please try again.');
+                }
+            });
+        }
+    }
+
+    // Initialize each verification section
+    for (let i = 1; i <= 7; i++) {
+        initializeVerificationSection(`verification-canvas-${i}`, `verification-input-${i}`, `send-verification-${i}`);
     }
 };
