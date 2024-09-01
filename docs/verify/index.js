@@ -10,20 +10,20 @@ window.onload = function() {
         return result;
     }
 
-    // Function to initialize each verification section
-    function initializeVerificationSection(canvasId, inputId, buttonId) {
-        var canvas = document.getElementById(canvasId);
+    // Initialize verification section
+    function initializeVerificationSection() {
+        var canvas = document.getElementById('verification-canvas');
         var ctx = canvas.getContext('2d');
 
         // Generate a random code
         const code = generateRandomCode(6); // Adjust the length as needed
 
-        // Set canvas background
-        ctx.fillStyle = '#f0f0f0';
+        // Set canvas background to a non-white color
+        ctx.fillStyle = '#f0f0f0'; // Light gray background
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         // Set text properties
-        ctx.fillStyle = '#333';
+        ctx.fillStyle = '#000'; // Black text for high contrast
         ctx.font = '24px Arial';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
@@ -32,8 +32,8 @@ window.onload = function() {
         ctx.fillText(code, canvas.width / 2, canvas.height / 2);
 
         // Handle button click event
-        var sendButton = document.getElementById(buttonId);
-        var inputField = document.getElementById(inputId);
+        var sendButton = document.getElementById('send-verification');
+        var inputField = document.getElementById('verification-input');
 
         if (sendButton && inputField) {
             sendButton.addEventListener('click', function() {
@@ -46,8 +46,6 @@ window.onload = function() {
         }
     }
 
-    // Initialize each verification section
-    for (let i = 1; i <= 7; i++) {
-        initializeVerificationSection(`verification-canvas-${i}`, `verification-input-${i}`, `send-verification-${i}`);
-    }
+    // Initialize the verification section
+    initializeVerificationSection();
 };
