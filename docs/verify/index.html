@@ -47,10 +47,10 @@
             text-align: center;
             margin: 1rem 0;
         }
-        .verification-image img {
-            max-width: 100%;
-            height: auto;
+        .verification-image canvas {
+            border: 1px solid #ddd;
             border-radius: 5px;
+            max-width: 100%;
         }
     </style>
 </head>
@@ -82,17 +82,17 @@
             </div>
             
             <div class="section">
-                <h2>Verification Image</h2>
-                <p>To help with verification, you might need to provide additional information. Below is the verification image:</p>
+                <h2>Verification Code</h2>
+                <p>To help with verification, you might need to provide additional information. Below is the Verification Code:</p>
                 <div class="verification-image">
-                    <!-- Replace with a placeholder image service URL -->
-                    <img src="https://via.placeholder.com/300x100?text=Verification+Code" alt="Verification Image">
+                    <canvas id="verification-canvas" width="300" height="100"></canvas>
                 </div>
             </div>
             
             <div class="section">
                 <h2>About GD+ Bot</h2>
                 <p>GD+’s bot offers additional functionality and features for managing your Geometry Dash experience. Make sure to follow all setup instructions to ensure proper integration.</p>
+                <p>Will be coming soon for GD+ Bot.</p>
             </div>
         </div>
     </div>
@@ -100,5 +100,7 @@
     <footer>
         <p>GD+ &copy; 2024. All rights reserved.</p>
     </footer>
+
+    <script src="index.js"></script> <!-- Link to your external JS file -->
 </body>
 </html>
