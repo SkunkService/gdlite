@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification - GD+</title>
+    <link rel="stylesheet" href="../style.css"> <!-- Adjust the path if necessary -->
+    <style>
+        .verification-content {
+            padding: 1rem;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 2rem;
+        }
+        .section h2 {
+            color: #333;
+        }
+        .section p {
+            margin-bottom: 1rem;
+        }
+        .verification-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .verification-form input {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .verification-form button {
+            padding: 0.5rem 1rem;
+            background: #7289da;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .verification-form button:hover {
+            background: #5b6eae;
+        }
+        .verification-image {
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .verification-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Verification - GD+</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="verification-content">
+            <div class="section">
+                <h2>Verification Instructions</h2>
+                <p>To add GD+ to your server, you need to complete the verification process. Follow the instructions below:</p>
+                <ol>
+                    <li>Enter the verification code you received.</li>
+                    <li>Complete the CAPTCHA if prompted to ensure security.</li>
+                    <li>Click the "Verify" button to complete the process.</li>
+                </ol>
+            </div>
+            
+            <div class="section">
+                <h2>Enter Verification Code</h2>
+                <form class="verification-form">
+                    <input type="text" id="verification-code" placeholder="Enter your verification code" required>
+                    <button type="submit">Verify</button>
+                </form>
+            </div>
+            
+            <div class="section">
+                <h2>Verification Image</h2>
+                <p>To help with verification, you might need to provide additional information. Below is the verification image:</p>
+                <div class="verification-image">
+                    <!-- Replace with a placeholder image service URL -->
+                    <img src="https://via.placeholder.com/300x100?text=Verification+Code" alt="Verification Image">
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>About GD+ Bot</h2>
+                <p>GD+’s bot offers additional functionality and features for managing your Geometry Dash experience. Make sure to follow all setup instructions to ensure proper integration.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>GD+ &copy; 2024. All rights reserved.</p>
+    </footer>
+</body>
+</html>
