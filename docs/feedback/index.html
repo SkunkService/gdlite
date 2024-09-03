@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDLite Feedback Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Feedback Form</h2>
+        <form id="feedbackForm">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="feedback">Feedback</label>
+            <textarea id="feedback" name="feedback" rows="6" required></textarea>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+        <div id="responseMessage" style="display:none; margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        const spamTimes = 1; // Maximum submissions allowed
+        const spamWait = 5;  // Wait time in seconds between submissions
+
+        let submissionCount = 0;
+        let lastSubmissionTime = 0;
+
+        function containsLinks(text) {
+            // Detect common URL patterns including http, https, www, and any domain name
+            const urlPattern = /https?:\/\/|www\.|\.com|\.net|\.org|\.io|\.gov|\.edu|\.us|\.co/gi;
+            return urlPattern.test(text);
+        }
+
+        function isSpam(text) {
+            const spamKeywords = ["spam", "viagra", "free money", "click here", "subscribe", "buy now"];
+            for (let keyword of spamKeywords) {
+                if (text.toLowerCase().includes(keyword)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const feedback = document.getElementById('feedback').value;
+
+            const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+
+            // Check if user is submitting too quickly
+            if (submissionCount >= spamTimes && (currentTime - lastSubmissionTime) < spamWait) {
+                document.getElementById('responseMessage').style.display = 'block';
+                document.getElementById('responseMessage').innerText = `You are submitting too quickly. Please wait ${spamWait} seconds between submissions.`;
+                document.getElementById('responseMessage').style.color = 'red';
+                return;
+            }
+
+            // Check for links in all fields
+            if (containsLinks(name) || containsLinks(email) || containsLinks(feedback)) {
+                document.getElementById('responseMessage').style.display = 'block';
+                document.getElementById('responseMessage').innerText = 'Links are not allowed in any field.';
+                document.getElementById('responseMessage').style.color = 'red';
+                return;
+            }
+
+            // Check for spam content
+            if (isSpam(feedback)) {
+                document.getElementById('responseMessage').style.display = 'block';
+                document.getElementById('responseMessage').innerText = 'Your feedback contains spammy content.';
+                document.getElementById('responseMessage').style.color = 'red';
+                return;
+            }
+
+            // Update submission count and time
+            submissionCount++;
+            lastSubmissionTime = currentTime;
+
+            const webhookUrl = 'https://discord.com/api/webhooks/1270191957343469661/hn-kF_7TGY5Wfl9Po8pKBmPuE2JtfWmPlaPScZ1O5i2OFcuJQZyfWNKed6cPrNBPer0C'; // Replace with your Discord Webhook URL
+
+            const data = {
+                username: 'Feedback Bot', // The name of the bot sending the message
+                embeds: [
+                    {
+                        title: 'New Feedback Received',
+                        color: 0x00FF00, // Green color
+                        fields: [
+                            { name: 'Name', value: name, inline: false },
+                            { name: 'Email', value: email, inline: false },
+                            { name: 'Feedback', value: feedback, inline: false }
+                        ],
+                        timestamp: new Date()
+                    }
+                ]
+            };
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('responseMessage').style.display = 'block';
+                    document.getElementById('responseMessage').innerText = 'Thank you for your feedback!';
+                    document.getElementById('responseMessage').style.color = 'green';
+                    document.getElementById('feedbackForm').reset();
+                } else {
+                    throw new Error('Something went wrong');
+                }
+            })
+            .catch(error => {
+                document.getElementById('responseMessage').style.display = 'block';
+                document.getElementById('responseMessage').innerText = 'Failed to send feedback. Please try again.';
+                document.getElementById('responseMessage').style.color = 'red';
+            });
+        });
+    </script>
+</body>
+</html>
