@@ -77,8 +77,8 @@
         let lastSubmissionTime = 0;
 
         function containsLinks(text) {
-            // More specific URL pattern to avoid false positives
-            const urlPattern = /(?:https?:\/\/)?(?:www\.)?[\w\-]+(\.[a-z]{2,}){1,}(\/[^\s]*)?/gi;
+            // Detecting full URLs with protocols (http/https) and common TLDs
+            const urlPattern = /\b(?:https?:\/\/)?(?:www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(\/[^\s]*)?\b/gi;
             return urlPattern.test(text);
         }
 
