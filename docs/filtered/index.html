@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDLite - Name Filtering</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+        }
+        p {
+            line-height: 1.6;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .language-select {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-select">
+            <label for="language">Select Language:</label>
+            <select id="language">
+                <option value="es">Español</option>
+                <option value="en" selected>English</option>
+            </select>
+        </div>
+
+        <div id="content">
+            <h1>GDLite - Name Filtering</h1>
+            <p>In GDLite, some level names are protected and cannot be uploaded if they violate our upload guidelines. This is to ensure that level names are safe and appropriate for all players. Level names may be protected for various reasons, including:</p>
+            <ul>
+                <li><strong>Dangerous Content:</strong> Names that suggest dangerous or harmful content.</li>
+                <li><strong>NSFW Content:</strong> Names that include adult or inappropriate content.</li>
+                <li><strong>Illegal Activities:</strong> Names that suggest illegal or inappropriate activities.</li>
+                <li><strong>Inappropriate Names:</strong> Names that are offensive or do not meet our conduct standards.</li>
+                <li><strong>Hacking:</strong> Names that reference hacking or similar activities.</li>
+            </ul>
+            <p>If your level's name is on the filtered names list, you may need to change it to comply with our guidelines. You can read more about our policies and filtering criteria at the following link:</p>
+            <a href="https://skunkservice.github.io/gdlite/filtered" class="button" target="_blank">Read More About Name Filtering</a>
+        </div>
+        
+        <div id="content-es" style="display:none;">
+            <h1>GDLite - Filtrado de Nombres</h1>
+            <p>En GDLite, algunos nombres de niveles están protegidos y no pueden ser cargados si violan nuestras pautas de carga. Esto es para garantizar que los nombres de niveles sean seguros y apropiados para todos los jugadores. Los nombres de niveles pueden estar protegidos por una variedad de razones, incluyendo:</p>
+            <ul>
+                <li><strong>Contenido Peligroso:</strong> Nombres que puedan sugerir contenido peligroso o dañino.</li>
+                <li><strong>Contenido NSFW:</strong> Nombres que incluyan contenido para adultos o inapropiado.</li>
+                <li><strong>Actividades Ilegales:</strong> Nombres que sugieran actividades ilegales o inapropiadas.</li>
+                <li><strong>Nombres Inapropiados:</strong> Nombres que sean ofensivos o que no cumplan con nuestras normas de conducta.</li>
+                <li><strong>Hackeo:</strong> Nombres que hagan referencia a hackeo o actividades similares.</li>
+            </ul>
+            <p>Si el nombre de tu nivel está en la lista de nombres filtrados, es posible que necesites cambiarlo para cumplir con nuestras pautas. Puedes leer más sobre nuestras políticas y los criterios de filtrado en el siguiente enlace:</p>
+            <a href="https://skunkservice.github.io/gdlite/filtered" class="button" target="_blank">Leer Más Sobre el Filtrado de Nombres</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('language').addEventListener('change', function() {
+            var lang = this.value;
+            if (lang === 'es') {
+                document.getElementById('content').style.display = 'none';
+                document.getElementById('content-es').style.display = 'block';
+            } else {
+                document.getElementById('content').style.display = 'block';
+                document.getElementById('content-es').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
