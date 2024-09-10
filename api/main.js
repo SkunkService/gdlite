@@ -42,4 +42,4 @@ async function fireEvent(type, value1, value2) {
   }
 }
 
-module.exports = fireEvent;
+module.exports = [fireEvent,credits];
