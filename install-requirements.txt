@@ -1,0 +1,6 @@
+Requirement to Install:
+npm i discord.js@latest
+npm i axios
+npm i discord-api-types@latest
+
+Note: The Discord.js is only used for v14.
